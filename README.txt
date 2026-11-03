@@ -1,5 +1,15 @@
-熊雷个人主页 V2
+熊雷个人主页 V3 — 最新发布包
 
-直接双击 index.html 可在电脑预览。发布到 GitHub Pages 时，请将本文件夹里的所有内容（不要上传外层文件夹）拖入仓库根目录，再提交到 main 分支。原有 index.html 和同名资源将被替换。项目详情和技能、经历数据在 assets/data.js 中维护。
+包含：彩色个人照片、手机端布局与弹窗修正、ESP32-C5 交互式架构图、原 GBK 编码工具。
 
-此版本基于原有主页内容，采用提示词中的方案 1；项目卡片为示意图，简历按钮调用浏览器打印，可选择“另存为 PDF”。原 GBK 工具保留于 tools/gbk/。页面使用静态 HTML/CSS/JavaScript，无需安装软件或构建，适合现有 GitHub Pages 发布流程。
+发布步骤：
+1. 解压本 ZIP。
+2. 打开 https://github.com/xionglei323-hub/xionglei323-hub.github.io/upload/main
+3. 将解压后里面的文件和文件夹全部拖入上传区域，不要上传 ZIP 或外层文件夹。index.html 必须位于仓库根目录，assets、projects、tools 与其同级。
+4. 提交到 main 分支，等待 Actions 中 Pages 部署成功。
+5. 访问 https://xionglei323-hub.github.io/ 并按 Ctrl+F5 刷新。
+
+维护：项目、技能、经历在 assets/data.js；其余文字在 index.html；样式在 assets/style.css。
+项目详情中的 ESP32 架构图入口为 projects/esp32-floorplan/index.html。架构图的 AI 提问和源码修改等功能依赖本地服务，静态部署仅提供页面自身支持的浏览功能。
+
+验证：已检查脚本语法、主页本地资源路径及压缩包完整性；浏览器实机视觉检查尚未完成。
