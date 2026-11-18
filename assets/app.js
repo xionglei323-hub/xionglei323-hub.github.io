@@ -1,14 +1,25 @@
 'use strict';
-const {projects,skills,experience}=window.siteData;
-const grid=document.getElementById('projects-grid');
-for(const p of projects){const card=document.createElement('article');card.className='project';card.innerHTML=`<div class="project-visual ${p.visual}" aria-hidden="true"><span class="visual-index">${p.number} / PROJECT STUDY</span><div class="visual-symbol">${{hoist:'⌁',stage:'✳',software:'≋',testing:'∿'}[p.visual]}</div><span class="visual-type">${p.english.toUpperCase()} / 示意</span></div><div class="project-info"><div class="project-meta"><span>${p.category}</span><span>${p.status}</span></div><h3>${p.title}</h3><p>${p.description}</p><div class="project-bottom"><div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div><button class="project-open" aria-label="查看${p.title}详情">↗</button></div></div>`;card.querySelector('button').addEventListener('click',()=>openProject(p,card.querySelector('button')));grid.append(card)}
+const { projects, skills, experience } = window.siteData;
+const grid = document.getElementById('projects-grid');
+for (const project of projects) {
+  const item = document.createElement('details');
+  const summary = document.createElement('summary');
+  summary.innerHTML = `<span class="index">${project.number}</span><span class="project-name"><small>${project.english}</small><strong>${project.title}</strong></span><span class="status">${project.status}</span><span class="plus" aria-hidden="true"></span>`;
+  const notes = document.createElement('div');
+  notes.className = 'notes';
+  notes.innerHTML = `<p class="technologies">${project.tags.join(' / ')}</p>` + project.sections.map(([title, body]) => `<h3>${title}</h3><p>${body}</p>`).join('');
+  if (project.id === 'hoist') {
+    const link = document.createElement('a');
+    link.href = 'projects/esp32-floorplan/index.html';
+    link.className = 'text-link';
+    link.textContent = '探索 ESP32-C5 交互架构图 ↗';
+    notes.append(link);
+  }
+  item.append(summary, notes);
+  grid.append(item);
+}
 document.getElementById('skills-list').innerHTML=skills.map(s=>`<article><span>${s[0]}</span><h3>${s[1]}</h3><p>${s[2]}</p></article>`).join('');
 document.getElementById('timeline').innerHTML=experience.map(e=>`<article><span>${e[0]}</span><div><h3>${e[1]}</h3><strong>${e[2]}</strong><p>${e[3]}</p></div></article>`).join('');
-const dialog=document.getElementById('project-dialog');let trigger;
-function openProject(p,button){trigger=button;document.getElementById('dialog-title').textContent=p.title;document.getElementById('dialog-meta').textContent=p.english+' · '+p.status;const content=document.getElementById('dialog-content');content.replaceChildren();for(const [title,body] of p.sections){const h=document.createElement('h3');h.textContent=title;const text=document.createElement('p');text.textContent=body;content.append(h,text)}if(p.id==='hoist'){const panel=document.createElement('section');panel.className='floorplan-entry';const h=document.createElement('h3');h.textContent='ESP32-C5 项目架构';const text=document.createElement('p');text.textContent='查看主控固件的模块、文件与调用关系。建议在电脑端全屏浏览。';const link=document.createElement('a');link.className='button dark';link.href='projects/esp32-floorplan/index.html';link.target='_blank';link.rel='noopener';link.textContent='打开交互式架构图 ↗';panel.append(h,text,link);content.append(panel)}dialog.showModal()}
-document.getElementById('close-dialog').addEventListener('click',()=>dialog.close());document.getElementById('dialog-contact').addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>trigger?.focus());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
 const menu=document.querySelector('.menu-toggle'),nav=document.getElementById('nav');menu.addEventListener('click',()=>{const expanded=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!expanded));nav.classList.toggle('open',!expanded)});nav.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}});document.getElementById('year').textContent=new Date().getFullYear();
 
-const drawings={hoist:'<div class="node">STM32<small>REMOTE / LVGL</small></div><span class="wire">LoRa<br>⟷</span><div class="node">ESP32-C5<small>RS-485 / SERVO</small></div>',stage:'<div class="stage-board"><i></i><i></i><i></i><b>CONTROL BOARD · CONCEPT</b></div>',software:'<div class="mock"><b>MATERIAL REVIEW</b><div class="mock-row">R-001 / 10KΩ <span>重复</span></div><div class="mock-row">C-028 / 100nF <span>相似</span></div><div class="mock-row">U-016 / MCU <span>待复核</span></div></div>',testing:'<div class="scope">SIGNAL / TEST BENCH<svg viewBox="0 0 320 90"><path d="M0 60H30V20H65V60H100V20H135V60H170V20H205V60H240V20H275V60H320" fill="none" stroke="#899474" stroke-width="2"/></svg></div>'};
-document.querySelectorAll('.project-visual').forEach((el,i)=>{el.querySelector('.visual-symbol').remove();const diagram=document.createElement('div');diagram.className='diagram';diagram.innerHTML=drawings[projects[i].visual];el.append(diagram)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.focus()}});
