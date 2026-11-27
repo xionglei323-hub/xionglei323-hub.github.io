@@ -7,5 +7,5 @@ window.siteData = {
     {id:'testing', number:'04', category:'TEST / CONCEPT', status:'方案阶段', title:'统一 PCB 测试平台', english:'PCB Test Platform', description:'以 ESP32 与触摸屏构建测试终端，探索不同控制板的统一功能测试。', tags:['ESP32','HMI','Testing'], visual:'testing', sections:[['方案目标','设计 ESP32 与触摸屏组成的测试平台，连接不同控制板，在被测板运行正式固件时执行功能与温度相关测试。'],['下一步','实现最小原型，验证被测板信号接入、测试流程和结果记录方式。']]}
   ],
   skills:[['HARDWARE','原理图 / PCB / 电源设计','器件选型、PCB Layout、样机验证与生产导入。'],['EMBEDDED','STM32 / ESP32 / FreeRTOS','嵌入式控制、LVGL、人机界面与系统联调。'],['CONNECTIVITY','LoRa / RS-485 / Modbus','无线链路、串行通信与控制系统集成。'],['WORKFLOW','Python / Git / AI Tools','用自动化和 AI 辅助开发、调试与文档整理。']],
-  experience:[['2016.08 — 至今','湖南视维电子科技有限公司（原湖南孝文电子科技有限公司）','电子工程师','承担舞台特效产品控制板研发，跟进立项、开发、试产与量产，处理生产异常及客户反馈。','https://www.showven.cn/'],['2016.03 — 2016.08','微经纬电脑设计有限公司','电路工程师 / 技术员','使用 Altium Designer、Allegro、PADS 绘制封装，开展 PCB 布局与布线。'],['教育与培训','湖南信息职业技术学院','大专 · 电子工程与自动化','2012 年入学；2015 年参加高级 PCB 制图员培训。']]
+  experience:[['2016.08 — 至今','湖南视维光电科技有限公司（原湖南孝文电子科技有限公司）','电子工程师','承担舞台特效产品控制板研发，跟进立项、开发、试产与量产，处理生产异常及客户反馈。','https://www.showven.cn/'],['2016.03 — 2016.08','微经纬电脑设计有限公司','电路工程师 / 技术员','使用 Altium Designer、Allegro、PADS 绘制封装，开展 PCB 布局与布线。'],['教育与培训','湖南信息职业技术学院','大专 · 电子工程与自动化','2012 年入学；2015 年参加高级 PCB 制图员培训。']]
 };
